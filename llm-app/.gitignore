@@ -1,0 +1,51 @@
+# except their sub-folders
+!data/**/
+!logs/**/
+
+# also keep all .gitkeep files
+!.gitkeep
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+.ipython/profile_default/history.sqlite
+.ipython/profile_default/startup/README
+
+# pyenv
+.python-version
+
+# macOS
+*.DS_Store
+
+# Vim
+*~
+.*.swo
+.*.swp
+
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+
