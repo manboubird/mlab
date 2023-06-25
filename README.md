@@ -1,2 +1,2 @@
-# tt-mlab
+# ML Lab
 AI/ML/DM lab 
