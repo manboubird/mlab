@@ -5,6 +5,7 @@ import glob
 
 
 import spacy
+import json 
 from icecream import ic
 from devtools import debug
 
@@ -46,17 +47,22 @@ def get_vector(text: str):
 def main():
     ic("Start LLM app ...")
     docs = []
-    # embeddings = []
+    embeddings = []
 
-    files = glob.glob("data/01_raw/data_runway/*")
+    # files = glob.glob("data/01_raw/data_runway/*")
+    files = glob.glob("data/**/**/*")
+    ic(files)
     for file in files:
 
         # topic_name = os.path.splitext(os.path.basename(file))[0]
         topic_name = "fashion"
-        ic(topic_name)
+        # ic(topic_name)
         with open(file) as f:
-            content = f.read()
-        
+            # content = f.read()
+            content_dict = json.load(f)
+        content = content_dict['textContent']
+        ic(content)
+
         text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0)
         doc = text_splitter.create_documents(texts=[content], metadatas=[{"name": topic_name, "source": "wikipedia"}])
 
@@ -64,6 +70,7 @@ def main():
         # vec = get_vector(content)
 
         docs.extend(doc)
+        # debug(embeddings)
         # embeddings.extend(vec)
     
     # embeddings = OpenAIEmbeddings()
