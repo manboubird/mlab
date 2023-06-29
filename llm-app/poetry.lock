@@ -1676,9 +1676,12 @@ files = [
 
 [package.dependencies]
 certifi = "*"
+click = {version = "==8.*", optional = true, markers = "extra == \"cli\""}
 h2 = {version = ">=3,<5", optional = true, markers = "extra == \"http2\""}
 httpcore = ">=0.15.0,<0.18.0"
 idna = "*"
+pygments = {version = "==2.*", optional = true, markers = "extra == \"cli\""}
+rich = {version = ">=10,<14", optional = true, markers = "extra == \"cli\""}
 sniffio = "*"
 
 [package.extras]
