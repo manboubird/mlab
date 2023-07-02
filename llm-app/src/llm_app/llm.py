@@ -7,6 +7,7 @@ import json
 
 from icecream import ic
 from devtools import debug
+from dataclasses import dataclass
 
 from langchain.vectorstores.qdrant import Qdrant
 from langchain.text_splitter import CharacterTextSplitter
@@ -40,15 +41,22 @@ def get_vector(text: str):
     return model.encode(text)
 
 
+@dataclass
+class DocEmbeddings():
+    doc: list[str]
+    embeddings: list
+
+
 def get_embeddings():
     """Command on llm_exec"""
     ic("Start LLM app ...")
+
     docs = []
     embeddings = []
 
     # files = glob.glob("data/01_raw/data_runway/*")
     files = glob.glob("data/**/**/*")
-    ic(files)
+    # ic(files)
     for file in files:
 
         # topic_name = os.path.splitext(os.path.basename(file))[0]
@@ -58,7 +66,7 @@ def get_embeddings():
             # content = f.read()
             content_dict = json.load(f)
         content = content_dict['textContent']
-        ic(content)
+        # ic(content)
 
         text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0)
         doc = text_splitter.create_documents(texts=[content], metadatas=[{"name": topic_name, "source": "wikipedia"}])
@@ -71,8 +79,11 @@ def get_embeddings():
         # embeddings.extend(vec)
     # embeddings = OpenAIEmbeddings()
     embeddings = HuggingFaceEmbeddings()
+
     debug(embeddings)
 
-    Qdrant.from_documents(docs, embeddings, path="./qdrant", collection_name="fashion")
+    Qdrant.from_documents(docs, embeddings, path="./qdrant", collection_name="article")
 
     ic("End LLM app ...")
+    return DocEmbeddings()
+    # return DocEmbeddings( doc=docs embeddings= embeddings )
