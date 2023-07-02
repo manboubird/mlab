@@ -20,6 +20,7 @@ sentence-transformers = "^2.2.2"
 llama-index = "0.5.27"
 # freeze version to keep SQLAlchemy v1 with langchain less than v0.0.148. https://github.com/hwchase17/langchain/pull/3310 
 langchain = "0.0.142"
+pathlib = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
@@ -37,7 +38,7 @@ httpx = {extras = ["cli"], version = "^0.24.1"}
 fastapi = "^0.98.0"
 streamlit = "^1.24.0"
 sqlmodel = "^0.0.8"
-uvicorn = "^0.22.0"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
 
 [build-system]
 requires = ["poetry-core"]

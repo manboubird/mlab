@@ -1,33 +1,28 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import glob
 # import openai
 
 
 import spacy
-import json 
+import json
+
 from icecream import ic
 from devtools import debug
 
-from dotenv import load_dotenv
 from langchain.vectorstores.qdrant import Qdrant
 from langchain.text_splitter import CharacterTextSplitter
 # from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.embeddings import HuggingFaceEmbeddings
 
-from typing import List
+# from typing import List
 
-from qdrant_client import QdrantClient
-from qdrant_client.http.models import ScoredPoint
+# from qdrant_client import QdrantClient
+# from qdrant_client.http.models import ScoredPoint
 
-import numpy as np
+# import numpy as np
 from sentence_transformers import SentenceTransformer
 
+
 model = SentenceTransformer("sentence-transformers/paraphrase-distilroberta-base-v1")
-
-
-load_dotenv()
-
 
 # load GiNZA dictionary load
 nlp: spacy.Language = spacy.load('ja_ginza', exclude=["tagger", "parser", "ner", "lemmatizer", "textcat", "custom"])
@@ -39,12 +34,14 @@ nlp: spacy.Language = spacy.load('ja_ginza', exclude=["tagger", "parser", "ner",
 #     doc: spacy.tokens.doc.Doc = nlp(text)
 #     return doc.vector
 
+
 def get_vector(text: str):
     # return np.array(model.encode(text))
     return model.encode(text)
 
 
-def main():
+def get_embeddings():
+    """Command on llm_exec"""
     ic("Start LLM app ...")
     docs = []
     embeddings = []
@@ -72,14 +69,10 @@ def main():
         docs.extend(doc)
         # debug(embeddings)
         # embeddings.extend(vec)
-    
     # embeddings = OpenAIEmbeddings()
     embeddings = HuggingFaceEmbeddings()
     debug(embeddings)
 
-    db = Qdrant.from_documents(docs, embeddings, path="./qdrant", collection_name="fashion")
+    Qdrant.from_documents(docs, embeddings, path="./qdrant", collection_name="fashion")
 
     ic("End LLM app ...")
-
-if __name__ == '__main__':
-    main()
