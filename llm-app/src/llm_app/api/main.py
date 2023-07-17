@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from fastapi import FastAPI, Response
+from typing import Any
+
+from fastapi import Depends, FastAPI, Response, Query
+from pydantic import BaseModel, Field
 
 from ..llm import get_embeddings, DocEmbeddings
 from ..search import NeuralSearcher
@@ -9,8 +12,16 @@ from ..search import NeuralSearcher
 app = FastAPI()
 
 
-@app.get("/predict")
-async def predict(response: Response):
+class PredictIn(BaseModel):
+    name: str = Field(Query(default="future", description="Input name"))
+
+
+class PredictOut(BaseModel):
+    message: str
+
+
+@app.get("/predict", response_model=PredictOut)
+async def predict(response: Response, query: PredictIn = Depends()) -> Any:
     # performace measure with Server-Timing
     #  Server Timing, https://w3c.github.io/server-timing/#examples
     response.headers["Server-Timing"] = ('sql-1;desc="MySQL lookup Server";dur=100, '
@@ -27,7 +38,7 @@ async def predict(response: Response):
     #                                      'Prerender;dur=1;desc="Headless render time (ms)", '
     #                                      'total;dur=124.6')
 
-    return {"message": "predict"}
+    return {"message": f"Predict {query.name}!"}
 
 
 @app.get("/embeddings")

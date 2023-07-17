@@ -32,6 +32,7 @@ devtools = {extras = ["pygments"], version = "^0.11.0"}
 litecli = "^1.9.0"
 httpx = {extras = ["cli"], version = "^0.24.1"}
 pytest = "^7.4.0"
+dredd-hooks = "^0.2.0"
 
 [tool.poetry.group.app.dependencies]
 fastapi = "^0.98.0"
