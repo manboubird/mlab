@@ -21,6 +21,7 @@ llama-index = "0.5.27"
 # freeze version to keep SQLAlchemy v1 with langchain less than v0.0.148. https://github.com/hwchase17/langchain/pull/3310 
 langchain = "0.0.142"
 pathlib = "^1.0.1"
+pyinstrument = "^4.5.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
@@ -32,6 +33,8 @@ devtools = {extras = ["pygments"], version = "^0.11.0"}
 litecli = "^1.9.0"
 httpx = {extras = ["cli"], version = "^0.24.1"}
 pytest = "^7.4.0"
+neovim = "^0.3.1"
+pylint = "^2.17.4"
 dredd-hooks = "^0.2.0"
 
 [tool.poetry.group.app.dependencies]
@@ -46,6 +49,7 @@ optional = true
 [tool.poetry.group.eda.dependencies]
 jupyterlab = "^4.0.2"
 ipywidgets = "^8.0.6"
+datasets = "^2.13.1"
 
 [build-system]
 requires = ["poetry-core"]
