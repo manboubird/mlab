@@ -1,0 +1,24 @@
+[project]
+name = "scene-understanding"
+version = "0.1.0"
+description = "SceneFormer CLI - AI-powered scene understanding tool"
+readme = "README.md"
+authors = []
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.1.0",
+    "pyyaml>=6.0",
+    "rich>=13.0.0",
+    "typer>=0.9.0",
+]
+
+[project.scripts]
+sceneformer-cli = "scene_understanding.cli:main"
+
+[build-system]
+requires = [
+    "wheel",
+    "setuptools-scm[toml]>=8.0",
+]
+build-backend = "setuptools.build_meta"
+
