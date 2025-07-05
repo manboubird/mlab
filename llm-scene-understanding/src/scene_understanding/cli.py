@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SceneFormer CLI - AI-powered scene understanding tool
+Sceneformer CLI - AI-powered scene understanding tool
 """
 
 import click
@@ -22,7 +22,7 @@ console = Console()
 @click.pass_context
 def main(ctx, verbose: bool, config: Optional[str]):
     """
-    SceneFormer CLI - AI-powered scene understanding tool.
+    Sceneformer CLI - AI-powered scene understanding tool.
     
     Analyze trends from multiple data sources and generate insights with AI.
     """
@@ -31,7 +31,7 @@ def main(ctx, verbose: bool, config: Optional[str]):
     ctx.obj['config'] = config
     
     if verbose:
-        console.print("[bold blue]SceneFormer CLI[/bold blue] - Verbose mode enabled")
+        console.print("[bold blue]Sceneformer CLI[/bold blue] - Verbose mode enabled")
 
 @main.group()
 @click.option('--ds', '--datasource', multiple=True, help='Data sources to analyze (streetstyle, event, etc.)')
@@ -88,7 +88,7 @@ def conf(ctx):
 @click.pass_context
 def setup(ctx, init: bool):
     """
-    Setup SceneFormer configuration files.
+    Setup Sceneformer configuration files.
     """
     if init:
         # Create .sceneformer.md
@@ -176,7 +176,7 @@ def analyze(ctx, datasource: tuple, lang: str, media_type: str, output_format: s
     """
     Perform complete trend analysis workflow.
     """
-    console.print("[bold blue]SceneFormer Analysis Workflow[/bold blue]")
+    console.print("[bold blue]Sceneformer Analysis Workflow[/bold blue]")
     
     # Display analysis parameters
     table = Table(title="Analysis Parameters")
@@ -200,9 +200,9 @@ def analyze(ctx, datasource: tuple, lang: str, media_type: str, output_format: s
 @click.pass_context
 def status(ctx):
     """
-    Show current SceneFormer status and configuration.
+    Show current Sceneformer status and configuration.
     """
-    console.print("[bold blue]SceneFormer Status[/bold blue]")
+    console.print("[bold blue]Sceneformer Status[/bold blue]")
     
     # Check configuration files
     config_files = ['.sceneformer.md', 'sfscript.yaml']

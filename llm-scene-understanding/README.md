@@ -38,6 +38,62 @@ uv pip install -e .
 pip install -e .
 ```
 
+### Create Standalone Executable
+
+You can create a standalone executable file using PyInstaller:
+
+```bash
+# Install PyInstaller
+uv add --dev pyinstaller
+
+# Create standalone executable
+pyinstaller --name=sceneformer --onefile src/scene_understanding/cli.py
+
+# The executable will be created in the dist/ directory
+# You can run it directly:
+./dist/sceneformer --version
+./dist/sceneformer --help
+```
+
+**PyInstaller Options:**
+- `--name=sceneformer` - Sets the name of the executable
+- `--onefile` - Creates a single executable file
+
+### Using Makefile
+
+For convenience, you can use the provided Makefile for common tasks:
+
+```bash
+# Show available commands
+make help
+
+# Install dependencies
+make install
+
+# Build wheel package
+make build
+# or
+make wheel
+
+# Create standalone executable
+make executable
+
+# Clean build artifacts
+make clean
+
+# Run tests
+make test
+
+# Full build process (clean, install, build, executable)
+make all
+
+# Install the built wheel
+make install-wheel
+
+# Uninstall the package
+make uninstall
+```
+
 ### Build and Install Wheel Package
 
 #### Build Wheel Package with uv
