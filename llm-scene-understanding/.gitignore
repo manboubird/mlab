@@ -8,10 +8,22 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+env/
+venv/
 build/
+develop-eggs/
 dist/
-*.egg-info/
+downloads/
+eggs/
 .eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # Installer logs
 pip-log.txt
@@ -32,27 +44,62 @@ coverage.xml
 
 # Jupyter Notebook
 .ipynb_checkpoints
+notebooks/
 
-# pyenv
-.python-version
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Data and output
+output/
+data/
+*.db
+*.sqlite
+*.duckdb
+*.parquet
+*.log
+*.tmp
+*.bak
+
+# Test artifacts
+*.test.db
+*.test.sqlite
+*.test.duckdb
+*.test.parquet
+
+# Ignore test data
+/tests/data/
+/tests/output/
+
+# Ignore secrets
+.env
+.env.*
+
+# Allow source, config, and test code
+!src/
+!tests/
+!pyproject.toml
+!Makefile
+!README.md
+!sceneformer.spec
+!cli.spec
 
 # mypy
 .mypy_cache/
 .dmypy.json
 
-# VSCode
-.vscode/
-
 # IDEs
-.idea/
 *.sublime-project
 *.sublime-workspace
 
 # Virtual environments
-.venv/
-venv/
 ENV/
-env/
 
 # uv lock file
 uv.lock
@@ -60,9 +107,9 @@ uv.lock
 # Local config files
 *.local
 
-# SceneFormer CLI generated config
+# Sceneformer CLI generated config
 .sceneformer.md
 sfscript.yaml
 
 # Misc
-*.log 
+*.cover 
